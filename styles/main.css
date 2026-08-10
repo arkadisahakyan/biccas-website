@@ -63,6 +63,12 @@ button {
   width: 100%;
   height: max(100vh, 100%);
   overflow: clip;
+
+  /* optimization */
+  isolation: isolate;
+  contain: strict;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 /* HERO SECTION */
@@ -72,7 +78,6 @@ button {
   width: 634px;
   height: 634px;
   filter: blur(500px);
-  will-change: transform;
 }
 
 .hero-section .blurred-circle:nth-child(1 of .blurred-circle) {

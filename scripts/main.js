@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         opacity: 0,
         stagger: 0.15,
         ease: "power1.in",
+        force3D: true,
       });
     },
   });
