@@ -220,6 +220,7 @@ button {
 
 .hero-section__call-to-action {
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
   align-items: center;
   justify-content: start;
@@ -228,6 +229,7 @@ button {
 
 .try-for-free {
   display: inline-flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   padding: 20px 30px;
@@ -396,12 +398,12 @@ button {
   }
 
   .hero-section__body {
-    margin-top: 100px;
+    margin-top: 80px;
   }
 
   .hero-section__content h1 {
     font-size: 3rem;
-    line-height: 70px;
+    line-height: 55px;
   }
 }
 
