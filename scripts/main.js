@@ -3,9 +3,13 @@ gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(SplitText);
 
 document.addEventListener("DOMContentLoaded", (event) => {
+  startHeroSectionAnimation();
   initializeAnimatedHamburgerMenu();
+  initializeAnimatedMarqueeBlock();
+});
 
-  const tl = gsap.timeline();
+function startHeroSectionAnimation() {
+  const heroTimeline = gsap.timeline();
 
   // animate the logo
   const logo = document.querySelector(".hero-section__logo");
@@ -13,19 +17,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     type: "chars",
     autoSplit: true,
     onSplit: (self) => {
-      return tl.from(self.chars, {
+      return heroTimeline.from(self.chars, {
         duration: 0.5,
         x: logo.clientWidth,
         opacity: 0,
         stagger: 0.15,
         ease: "power1.in",
-        force3D: true,
       });
     },
   });
 
   // animate the curved line
-  tl.fromTo(
+  heroTimeline.fromTo(
     ".curved-line path",
     { drawSVG: "0" },
     {
@@ -37,7 +40,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   );
 
   // animate the try for free button
-  tl.to(".try-for-free", {
+  heroTimeline.to(".try-for-free", {
     scale: 1.1,
     duration: 0.2,
     delay: 0.3,
@@ -45,20 +48,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     yoyo: true,
     ease: "power1.out",
   });
-
-  // animate marquee block
-  const marqueeInstance = document.querySelector(".hero-section__partners");
-  const marqueeOriginalPart = marqueeInstance.children[0];
-  const marqueeClonedPart = marqueeOriginalPart.cloneNode(true);
-
-  marqueeInstance.appendChild(marqueeClonedPart);
-  gsap.to([marqueeOriginalPart, marqueeClonedPart], {
-    duration: 15,
-    xPercent: -100,
-    repeat: -1,
-    ease: "none",
-  });
-});
+}
 
 function initializeAnimatedHamburgerMenu() {
   const toggleButton = document.querySelector(".hero-section__menu-toggle svg");
@@ -81,6 +71,46 @@ function initializeAnimatedHamburgerMenu() {
   window.addEventListener("resize", () => {
     menuAnimator.clearProps();
   });
+}
+
+function initializeAnimatedMarqueeBlock() {
+  const marqueeBlock = new MarqueeBlock(
+    document.querySelector(".hero-section__partners"),
+  );
+  const marqueeAnimator = new MarqueeBlockAnimator(marqueeBlock);
+  marqueeAnimator.animateMarqueeBlock();
+}
+
+class MarqueeBlock {
+  constructor(marqueeInstance) {
+    this.marqueeInstance = marqueeInstance;
+    this.marqueeOriginalPart = marqueeInstance.children[0];
+    this.marqueeClonedPart = this.marqueeOriginalPart.cloneNode(true);
+  }
+}
+
+class MarqueeBlockAnimator {
+  constructor(marqueeBlock) {
+    this.marqueeBlock = marqueeBlock;
+    this.marqueeBlock.marqueeInstance.appendChild(
+      this.marqueeBlock.marqueeClonedPart,
+    );
+  }
+
+  animateMarqueeBlock() {
+    gsap.to(
+      [
+        this.marqueeBlock.marqueeOriginalPart,
+        this.marqueeBlock.marqueeClonedPart,
+      ],
+      {
+        duration: 15,
+        xPercent: -100,
+        repeat: -1,
+        ease: "none",
+      },
+    );
+  }
 }
 
 class HamburgerButton {
