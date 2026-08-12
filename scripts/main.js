@@ -1,11 +1,12 @@
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", (event) => {
   startHeroSectionAnimation();
-  initializeAnimatedHamburgerMenu();
-  initializeAnimatedMarqueeBlock();
+  initializeHeroSectionAnimations();
+  initializeRatingsSectionAnimations();
 });
 
 function startHeroSectionAnimation() {
@@ -79,6 +80,71 @@ function initializeAnimatedMarqueeBlock() {
   );
   const marqueeAnimator = new MarqueeBlockAnimator(marqueeBlock);
   marqueeAnimator.animateMarqueeBlock();
+}
+
+function initializeHeroSectionAnimations() {
+  initializeAnimatedHamburgerMenu();
+  initializeAnimatedMarqueeBlock();
+}
+
+function initializeRatingsSectionAnimations() {
+  gsap.from([".ratings-section__title", ".ratings-section__subtext"], {
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: ".ratings-section__title",
+      start: "top bottom",
+      toggleActions: "play none none reverse",
+    },
+    y: 50,
+    opacity: 0,
+    ease: "power1.inOut",
+  });
+
+  const features = document.querySelectorAll(".ratings-section__feature");
+  features.forEach((feature) => {
+    gsap.from(feature, {
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: feature,
+        start: "top bottom",
+        toggleActions: "play none none reverse",
+      },
+      y: 50,
+      opacity: 0,
+      ease: "power1.inOut",
+    });
+  });
+
+  const ratingsBlocks = document.querySelectorAll(
+    ".ratings-section__rating-block",
+  );
+  ratingsBlocks.forEach((ratingsInstance) => {
+    const ratingsBlock = new RatingsBlock(ratingsInstance);
+    ratingsBlock.stars.forEach((star, index) => {
+      if (star.classList.contains("ratings-section__star--inactive")) return;
+      gsap.to(star, {
+        duration: 0.2,
+        scrollTrigger: {
+          trigger: ratingsBlock.ratingsInstance,
+          start: "bottom bottom",
+          toggleActions: "play none none reset",
+        },
+        scale: 1.4,
+        yoyo: true,
+        repeat: 1,
+        delay: index * 0.2,
+      });
+    });
+  });
+}
+
+class RatingsBlock {
+  constructor(ratingsInstance) {
+    this.ratingsInstance = ratingsInstance;
+    this.stars = this.ratingsInstance.querySelectorAll(
+      ".ratings-section__star",
+    );
+  }
 }
 
 class MarqueeBlock {
