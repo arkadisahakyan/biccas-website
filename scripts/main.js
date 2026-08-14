@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   startHeroSectionAnimation();
   initializeHeroSectionAnimations();
   initializeRatingsSectionAnimations();
+  initializeFeaturesSectionAnimations();
 });
 
 function startHeroSectionAnimation() {
@@ -117,6 +118,27 @@ function initializeRatingsSectionAnimations() {
         repeat: 1,
         delay: index * 0.2,
       });
+    });
+  });
+}
+
+function initializeFeaturesSectionAnimations() {
+  const featuresHeader = document.querySelector(".features-section__header");
+  createRevealOnScrollAnimation(featuresHeader, featuresHeader);
+
+  // animate the features
+  const features = document.querySelectorAll(".features-section__feature");
+  features.forEach((feature) => {
+    gsap.from(feature, {
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: feature,
+        start: "30% bottom",
+        toggleActions: "play none none reverse",
+      },
+      x: feature.parentElement.clientWidth,
+      opacity: 0,
+      ease: "back.out(0.5)",
     });
   });
 }

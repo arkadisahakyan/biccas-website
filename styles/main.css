@@ -619,6 +619,7 @@ button {
 }
 
 .features-section__features {
+  overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fit, min(100%, 364px));
   justify-content: center;
