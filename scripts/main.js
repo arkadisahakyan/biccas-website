@@ -88,31 +88,14 @@ function initializeHeroSectionAnimations() {
 }
 
 function initializeRatingsSectionAnimations() {
-  gsap.from([".ratings-section__title", ".ratings-section__subtext"], {
-    duration: 0.8,
-    scrollTrigger: {
-      trigger: ".ratings-section__title",
-      start: "top bottom",
-      toggleActions: "play none none reverse",
-    },
-    y: 50,
-    opacity: 0,
-    ease: "power1.inOut",
-  });
+  createRevealOnScrollAnimation(
+    [".ratings-section__title", ".ratings-section__subtext"],
+    ".ratings-section__title",
+  );
 
   const features = document.querySelectorAll(".ratings-section__feature");
   features.forEach((feature) => {
-    gsap.from(feature, {
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: feature,
-        start: "top bottom",
-        toggleActions: "play none none reverse",
-      },
-      y: 50,
-      opacity: 0,
-      ease: "power1.inOut",
-    });
+    createRevealOnScrollAnimation(feature, feature);
   });
 
   const ratingsBlocks = document.querySelectorAll(
@@ -135,6 +118,20 @@ function initializeRatingsSectionAnimations() {
         delay: index * 0.2,
       });
     });
+  });
+}
+
+function createRevealOnScrollAnimation(objects, trigger) {
+  gsap.from(objects, {
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: trigger,
+      start: "top bottom",
+      toggleActions: "play none none reverse",
+    },
+    y: 50,
+    opacity: 0,
+    ease: "power1.inOut",
   });
 }
 
