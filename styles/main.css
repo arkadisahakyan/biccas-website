@@ -46,6 +46,17 @@ button {
   margin: 0 auto;
 }
 
+.preview-image {
+  position: relative;
+  container-type: size;
+}
+
+.preview-image img {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+}
+
 .curved-line {
   display: block;
   max-width: 479px;
@@ -251,17 +262,6 @@ button {
   height: 40px;
 }
 
-.hero-section__preview-image {
-  position: relative;
-  container-type: size;
-}
-
-.hero-section__preview-image img {
-  position: absolute;
-  height: auto;
-  pointer-events: none;
-}
-
 .hero-section__man-and-background {
   position: relative;
   width: 69.492%;
@@ -390,7 +390,7 @@ button {
     gap: 50px;
   }
 
-  .hero-section__preview-image {
+  .preview-image {
     width: 80%;
     transform: translateX(-12%);
     aspect-ratio: 100 / 80;
@@ -577,8 +577,8 @@ button {
 
 /* FEATURES SECTION */
 
-.features-section .container {
-  padding-block: 130px;
+.features-section {
+  margin-block: 130px;
 }
 
 .features-section__header {
@@ -646,4 +646,97 @@ button {
   font-size: 1.125rem;
   line-height: 30px;
   color: var(--text-color-grey);
+}
+
+/* BENEFITS SECTION */
+
+.benefits-section {
+  margin-block: 130px;
+}
+
+.benefits-section .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(471px, 100%), 1fr));
+  gap: 50px;
+}
+
+.benefits-section__benefits-block {
+}
+
+.benefits-section__benefits-block h2 {
+  margin-bottom: 50px;
+  max-width: 429px;
+  font-weight: 700;
+  font-size: 3.125rem;
+  color: var(--text-color-dark);
+}
+
+.benefits-section__benefits-block > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.benefits-section__benefits-block > ul > li {
+  display: flex;
+  gap: 20px;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 30px;
+  color: var(--text-color-dark);
+}
+
+.benefits-section__benefits-block > ul > li::before {
+  display: block;
+  flex-shrink: 0;
+  content: "";
+  background: url("../images/green-check.svg");
+  width: 32px;
+  height: 32px;
+}
+
+.benefits-section__preview-image {
+  container-type: size;
+}
+
+.benefits-section__laptop {
+  left: 21.7cqw;
+  width: 79.65cqw;
+}
+
+.benefits-section__amanda-young {
+  container-type: size;
+  position: relative;
+}
+
+.benefits-section__amanda-young-bg {
+  top: 6cqw;
+  width: 55cqw;
+}
+
+.benefits-section__amanda-young-icon {
+  top: 8.5cqw;
+  left: 3.5cqw;
+  width: 10cqw;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.benefits-section__gallery-icon {
+  top: 48.6cqw;
+  left: 9.4cqw;
+  width: 8.7cqw;
+}
+
+.benefits-section__money-transfer-successful {
+  top: 83cqw;
+  left: 1.4cqw;
+  width: 56cqw;
+}
+
+.benefits-section__total-income {
+  top: 21cqw;
+  left: 89cqw;
+  width: 25cqw;
 }
