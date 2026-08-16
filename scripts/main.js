@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   initializeHeroSectionAnimations();
   initializeRatingsSectionAnimations();
   initializeFeaturesSectionAnimations();
+  initializeBenefitsSectionAnimations();
 });
 
 function startHeroSectionAnimation() {
@@ -140,6 +141,18 @@ function initializeFeaturesSectionAnimations() {
       opacity: 0,
       ease: "back.out(0.5)",
     });
+  });
+}
+
+function initializeBenefitsSectionAnimations() {
+  const title = document.querySelector(".benefits-section__benefits-block h2");
+  const benefits = document.querySelectorAll(
+    ".benefits-section__benefits-block ul > li",
+  );
+
+  createRevealOnScrollAnimation(title, title);
+  benefits.forEach((benefitItem) => {
+    createRevealOnScrollAnimation(benefitItem, benefitItem);
   });
 }
 
