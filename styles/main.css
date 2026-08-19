@@ -1,6 +1,7 @@
 :root {
   --text-color-dark: #191a15;
   --text-color-grey: #a6a6a6;
+  --theme-color-green: #54bd95;
 }
 
 html {
@@ -28,7 +29,8 @@ li {
   list-style: none;
 }
 
-button {
+button,
+fieldset {
   border: none;
 }
 
@@ -72,24 +74,35 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: max(100vh, 100%);
-  overflow: clip;
+  height: 100%;
+  overflow-x: clip;
 
   /* optimization */
   isolation: isolate;
-  contain: strict;
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
-/* HERO SECTION */
-
-.hero-section .blurred-circle {
+.blurred-circle {
   position: absolute;
   width: 634px;
   height: 634px;
   filter: blur(500px);
 }
+
+.green-check-list > li::before {
+  display: block;
+  float: left;
+  margin-right: 20px;
+  min-width: 32px;
+  width: 32px;
+  height: 32px;
+  content: "";
+  background: url("../images/green-check.svg");
+  background-size: contain;
+}
+
+/* HERO SECTION */
 
 .hero-section .blurred-circle:nth-child(1 of .blurred-circle) {
   left: -317px;
@@ -393,8 +406,11 @@ button {
   .preview-image {
     width: 80%;
     transform: translateX(-12%);
-    aspect-ratio: 100 / 80;
     justify-self: center;
+  }
+
+  .hero-section__preview-image {
+    aspect-ratio: 100 / 80;
   }
 
   .hero-section__body {
@@ -678,30 +694,20 @@ button {
 }
 
 .benefits-section__benefits-block > ul > li {
-  display: flex;
-  gap: 20px;
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 30px;
   color: var(--text-color-dark);
 }
 
-.benefits-section__benefits-block > ul > li::before {
-  display: block;
-  flex-shrink: 0;
-  content: "";
-  background: url("../images/green-check.svg");
-  width: 32px;
-  height: 32px;
-}
-
 .benefits-section__preview-image {
-  container-type: size;
+  aspect-ratio: 643 / 617;
 }
 
 .benefits-section__laptop {
   left: 21.7cqw;
   width: 79.65cqw;
+  border-radius: 3.5cqw;
 }
 
 .benefits-section__amanda-young {
@@ -739,4 +745,207 @@ button {
   top: 21cqw;
   left: 89cqw;
   width: 25cqw;
+}
+
+/* CHOOSE PLAN SECTION */
+
+.choose-plan-section {
+  margin-block: 130px;
+  position: relative;
+}
+
+.choose-plan-section .blurred-circle:nth-child(1) {
+  left: 1123px;
+  top: -156px;
+  background: #54be96;
+}
+
+.choose-plan-section__title {
+  max-width: 492px;
+  margin: 0 auto 40px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 3.125rem;
+  line-height: 73px;
+  color: var(--text-color-dark);
+}
+
+.choose-plan-section__title-subtext {
+  margin-block: 40px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-align: center;
+  color: var(--text-color-grey);
+}
+
+.choose-plan-section__billing-type {
+  display: flex;
+  margin: 40px auto 67px;
+  justify-content: space-between;
+  padding: 7px;
+  max-width: 340px;
+  background: white;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.choose-plan-section__billing-type label {
+  cursor: pointer;
+  padding: 13px 33px;
+  background: white;
+  border-radius: 10px;
+  color: var(--text-color-dark);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 30px;
+}
+
+.choose-plan-section__billing-type label:has(input[type="radio"]:checked) {
+  color: white;
+  background: #54bd95;
+}
+
+.choose-plan-section__billing-type input {
+  appearance: none;
+}
+
+.choose-plan-section__pricing-plans {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: space-between;
+  align-items: center;
+  height: 684px;
+}
+
+.choose-plan-section__pricing-plans-item {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px 25px;
+  max-width: 374px;
+  max-height: 684px;
+  width: 100%;
+  height: 644px;
+  background: white;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+}
+
+.choose-plan-section__subtitle {
+  font-weight: 600;
+  font-size: 1.875rem;
+  text-align: center;
+  color: var(--text-color-dark);
+}
+
+.choose-plan-section__subtitle-subtext {
+  margin-block: 10px 13px;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 27px;
+  text-align: center;
+  color: var(--text-color-grey);
+}
+
+.choose-plan-section__price-block {
+  margin: 40px auto 22px;
+  width: max-content;
+}
+
+.choose-plan-section__currency {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  align-content: end;
+  top: -36px;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 30px;
+  color: var(--text-color-grey);
+}
+
+.choose-plan-section__item-price {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 3.125rem;
+  line-height: 30px;
+  color: var(--text-color-dark);
+}
+
+.choose-plan-section__features {
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 37px 17px;
+  width: 100%;
+  background: #f9fafb;
+  border-radius: 10px;
+}
+
+.choose-plan-section__features ul {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.choose-plan-section__features ul > li {
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 30px;
+  color: var(--text-color-dark);
+}
+
+.choose-plan-section .green-check-list > li::before {
+  margin-right: 10px;
+  min-width: 26px;
+  width: 26px;
+  height: 26px;
+}
+
+.choose-plan-section__call-to-action {
+  padding: 17px 63px;
+  text-align: center;
+  align-content: center;
+  margin: 27px auto 0;
+  background: white;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 30px;
+  color: var(--theme-color-green);
+}
+
+.choose-plan-section__pricing-plans-item--highlighted {
+  background: var(--theme-color-green);
+  height: 100%;
+}
+
+.choose-plan-section__pricing-plans-item--highlighted {
+  & .choose-plan-section__subtitle,
+  & .choose-plan-section__subtitle-subtext,
+  & .choose-plan-section__currency,
+  & .choose-plan-section__item-price,
+  & .choose-plan-section__call-to-action {
+    color: white;
+  }
+
+  & .choose-plan-section__call-to-action {
+    background-color: var(--theme-color-green);
+  }
+}
+
+.choose-plan-section__text-hook {
+  padding: 5px 10px;
+  text-align: center;
+  align-content: center;
+  background: #85dab9;
+  color: white;
+  border-radius: 10px;
+  width: max-content;
+  margin: -16px auto 15px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 30px;
 }
