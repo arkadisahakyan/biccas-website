@@ -515,7 +515,7 @@ fieldset {
   gap: 18px;
 }
 
-..ratings-section__stars {
+.ratings-section__stars {
 }
 
 .ratings-section__star {
@@ -810,25 +810,38 @@ fieldset {
 }
 
 .choose-plan-section__pricing-plans {
+  overflow-x: hidden;
+}
+
+.choose-plan-section__pricing-plans.swiper-initialized
+  .choose-plan-section__pricing-plans-wrapper {
+  justify-content: flex-start;
+}
+
+.choose-plan-section__pricing-plans-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
   justify-content: space-between;
   align-items: center;
   height: 684px;
 }
 
 .choose-plan-section__pricing-plans-item {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   padding: 40px 20px 25px;
   max-width: 374px;
   max-height: 684px;
   width: 100%;
-  height: 644px;
+  height: 644px !important;
   background: white;
   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
+  transition: height 0.2s ease;
+}
+
+.choose-plan-section__pricing-plans-item.swiper-slide-active {
+  transition: height 0.2s;
+  height: 684px !important;
 }
 
 .choose-plan-section__subtitle {
@@ -919,7 +932,6 @@ fieldset {
 
 .choose-plan-section__pricing-plans-item--highlighted {
   background: var(--theme-color-green);
-  height: 100%;
 }
 
 .choose-plan-section__pricing-plans-item--highlighted {

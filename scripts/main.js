@@ -1,3 +1,12 @@
+import gsap from "gsap";
+import MotionPathPlugin from "gsap/MotionPathPlugin";
+import DrawSVGPlugin from "gsap/DrawSVGPlugin";
+import SplitText from "gsap/SplitText";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+import Swiper from "swiper/bundle";
+import "swiper/css/bundle";
+
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(SplitText);
@@ -9,6 +18,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   initializeRatingsSectionAnimations();
   initializeFeaturesSectionAnimations();
   initializeBenefitsSectionAnimations();
+  initializeChoosePlanSectionAnimations();
 });
 
 function startHeroSectionAnimation() {
@@ -130,17 +140,7 @@ function initializeFeaturesSectionAnimations() {
   // animate the features
   const features = document.querySelectorAll(".features-section__feature");
   features.forEach((feature) => {
-    gsap.from(feature, {
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: feature,
-        start: "30% bottom",
-        toggleActions: "play none none reverse",
-      },
-      x: feature.parentElement.clientWidth,
-      opacity: 0,
-      ease: "back.out(0.5)",
-    });
+    createRevealFromPageCornerAnimation(feature);
   });
 }
 
@@ -156,6 +156,31 @@ function initializeBenefitsSectionAnimations() {
   });
 }
 
+function initializeChoosePlanSectionAnimations() {
+  const title = document.querySelector(".choose-plan-section__title");
+  const subtext = document.querySelector(".choose-plan-section__title-subtext");
+  createRevealOnScrollAnimation([title, subtext], title);
+
+  const plans = document.querySelectorAll(
+    ".choose-plan-section__pricing-plans-item",
+  );
+  plans.forEach((item) => {
+    createRevealFromPageCornerAnimation(item);
+  });
+
+  const swiper = new Swiper(".choose-plan-section__pricing-plans", {
+    wrapperClass: "choose-plan-section__pricing-plans-wrapper",
+    slideClass: "choose-plan-section__pricing-plans-item",
+    direction: "horizontal",
+    initialSlide: 1,
+    watchOverflow: true,
+    loop: false,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    spaceBetween: "29",
+  });
+}
+
 function createRevealOnScrollAnimation(objects, trigger) {
   gsap.from(objects, {
     duration: 0.8,
@@ -167,6 +192,20 @@ function createRevealOnScrollAnimation(objects, trigger) {
     y: 50,
     opacity: 0,
     ease: "power1.inOut",
+  });
+}
+
+function createRevealFromPageCornerAnimation(object) {
+  gsap.from(object, {
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: object,
+      start: "30% bottom",
+      toggleActions: "play none none reverse",
+    },
+    x: object.parentElement.clientWidth,
+    opacity: 0,
+    ease: "back.out(0.5)",
   });
 }
 
