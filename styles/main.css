@@ -996,7 +996,7 @@ textarea {
   width: 100%;
 }
 
-.footer-section__reviews h2 {
+.footer-section__title {
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 3.125rem;
@@ -1109,18 +1109,18 @@ textarea {
     font-size: 0.875rem;
     color: var(--text-color-grey);
   }
+}
 
-  button {
-    height: 60px;
-    background: var(--theme-color-green);
-    border-radius: 10px;
-    text-align: center;
-    align-content: center;
-    font-weight: 600;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-  }
+.footer-section__request-demo-btn {
+  height: 60px;
+  background: var(--theme-color-green);
+  border-radius: 10px;
+  text-align: center;
+  align-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
 }
 
 .footer-section__footer-main {

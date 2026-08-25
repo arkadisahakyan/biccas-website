@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   initializeFeaturesSectionAnimations();
   initializeBenefitsSectionAnimations();
   initializeChoosePlanSectionAnimations();
+  initializeFooterSectionAnimations();
 });
 
 function startHeroSectionAnimation() {
@@ -178,6 +179,31 @@ function initializeChoosePlanSectionAnimations() {
     centeredSlides: true,
     slidesPerView: "auto",
     spaceBetween: "29",
+  });
+}
+
+function initializeFooterSectionAnimations() {
+  const title = document.querySelector(".footer-section__title");
+  const subtext = document.querySelector(".footer-section__subtext");
+  createRevealOnScrollAnimation([title, subtext], title);
+
+  // animate the "request demo" button
+  const requestDemoButton = document.querySelector(
+    ".footer-section__request-demo-btn",
+  );
+  const tl = gsap.timeline({
+    repeat: -1,
+    repeatDelay: 1,
+  });
+  tl.to(requestDemoButton, {
+    duration: 0.5,
+    scale: 0.95,
+    ease: "power3.in",
+  });
+  tl.to(requestDemoButton, {
+    duration: 0.5,
+    scale: 1,
+    ease: "power3.out",
   });
 }
 
